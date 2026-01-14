@@ -62,26 +62,27 @@ public class Main {
 
         System.out.println("\nEs 1: Libri con prezzo superiore a 100 euro:");
         List<Product> es1 = products.stream()
-                .filter(p -> p.getCategory().equalsIgnoreCase("Books"))
-                .filter(p -> p.getPrice() > 100)
+                .filter(p -> p.getCategory().equals("Books") &&
+                        p.getPrice() > 100)
                 .toList();
-        es1.forEach(System.out::println);
+        System.out.println(es1);
+
 
         // ESERCIZIO 2: Ottenere una lista di ordini con prodotti che appartengono alla categoria Baby
 
         System.out.println("\nEs 2: Ordini con prodotti Baby:");
         List<Order> es2 = orders.stream()
                 .filter(o -> o.getProducts().stream()
-                        .anyMatch(p -> p.getCategory().equalsIgnoreCase("Baby")))
+                        .anyMatch(p -> p.getCategory().equals("Baby")))
                 .toList();
-        es2.forEach(System.out::println);
+        System.out.println(es2);
 
         // ESERCIZIO 3: Ottenere una lista di prodotti che appartengono alla categoria Boys e applicare 10%
         // di sconto al loro prezzo
 
         System.out.println("\nEs 3: Prodotti Boys con sconto 10%:");
         List<Product> es3 = products.stream()
-                .filter(p -> p.getCategory().equalsIgnoreCase("Boys"))
+                .filter(p -> p.getCategory().equals("Boys"))
                 .map(p -> new Product(
                         p.getId(),
                         p.getName(),
@@ -89,7 +90,7 @@ public class Main {
                         p.getPrice() * 0.9
                 ))
                 .toList();
-        es3.forEach(System.out::println);
+        System.out.println(es3);
 
         // ESERCIZIO 4: Ottenere una lista di prodotti ordinati da clienti di livello (tier) 2 tra l'1 febbraio 2021
         // e l'1 aprile 2021
@@ -106,6 +107,6 @@ public class Main {
                 .flatMap(o -> o.getProducts().stream())
                 .toList();
 
-        es4.forEach(System.out::println);
+        System.out.println(es4);
     }
 }
